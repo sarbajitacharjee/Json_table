@@ -1,16 +1,14 @@
-"use client"
-import axios from 'axios';
-
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Main.css';
 
 const Main = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('/data.json')
+        axios.get(`${process.env.PUBLIC_URL}/data.json`)
             .then(response => setData(response.data.data))
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching data:', error.message));
     }, []);
 
     return (
